@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DM i Rotary Golf 2026 — Danmarks Mesterskab</title>
+  <meta name="description" content="Danmarks Mesterskab i Rotary Golf 2026 — arrangeret af Charlottenlund Rotary Klub. Fredag den 28. august 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-deep:   #0f2d1f;
+      --green-mid:    #1a4a2e;
+      --green-light:  #2d6e47;
+      --green-pale:   #e8f0ea;
+      --gold:         #c9a060;
+      --gold-light:   #e8c88a;
+      --gold-pale:    #fdf6e8;
+      --cream:        #faf7f2;
+      --ink:          #1a1a18;
+      --ink-soft:     #3d3d35;
+      --ink-muted:    #6b6b5e;
+      --white:        #ffffff;
+      --rule:         rgba(201,160,96,0.3);
+      --shadow-sm:    0 2px 12px rgba(15,45,31,0.08);
+      --shadow-md:    0 8px 40px rgba(15,45,31,0.14);
+      --shadow-lg:    0 20px 80px rgba(15,45,31,0.2);
+      --radius:       2px;
+      --serif:        'Playfair Display', Georgia, serif;
+      --body:         'EB Garamond', Georgia, serif;
+      --mono:         'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 18px; }
+
+    body {
+      font-family: var(--body);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 clamp(1rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,247,242,0.97);
+      box-shadow: 0 1px 0 var(--rule), var(--shadow-sm);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-logo-text {
+      font-family: var(--serif);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      line-height: 1.3;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--body);
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--green-deep);
+      color: var(--gold) !important;
+      padding: 0.45rem 1.2rem;
+      opacity: 1 !important;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--green-deep);
+      transition: 0.3s;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-deep);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 120% 80% at 60% 30%, rgba(45,110,71,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(201,160,96,0.12) 0%, transparent 60%),
+        linear-gradient(165deg, #0a1f14 0%, #0f2d1f 40%, #162b1f 100%);
+    }
+    /* Decorative golf course SVG silhouette */
+    .hero-silhouette {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(10,25,16,0.9) 0%, transparent 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(201,160,96,0.04) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(201,160,96,0.04) 60px);
+    }
+    /* Rotary wheel watermark */
+    .hero-watermark {
+      position: absolute; right: -8%; top: 50%; transform: translateY(-50%);
+      width: min(55vw, 700px); height: min(55vw, 700px);
+      opacity: 0.04;
+    }
+    /* Gold rule accents */
+    .hero-rules {
+      position: absolute; top: 0; left: clamp(1.5rem, 6vw, 6rem);
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
+      opacity: 0.25;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(2rem, 6vw, 6rem) clamp(1.5rem, 6vw, 6rem);
+      max-width: 920px;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::after {
+      content: '';
+      flex: 1; max-width: 80px; height: 1px;
+      background: var(--gold); opacity: 0.5;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 7.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-subtitle {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+      letter-spacing: 0.01em;
+      margin-bottom: 2.5rem;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .hero-meta-item {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .hero-meta-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+    }
+    .hero-meta-value {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--gold);
+      color: var(--green-deep);
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,160,96,0.08);
+    }
+    /* Hero scroll indicator */
+    .hero-scroll {
+      position: absolute; bottom: 2rem; right: clamp(1.5rem, 6vw, 6rem);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0.5;
+    }
+    .hero-scroll span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--white), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(1); opacity: 0.5; }
+      50% { transform: scaleY(0.5); opacity: 0.2; }
+    }
+
+    /* ===== COUNTDOWN STRIP ===== */
+    .countdown-strip {
+      background: var(--green-mid);
+      padding: 1.5rem clamp(1.5rem, 6vw, 6rem);
+      display: flex; justify-content: center;
+    }
+    .countdown-inner {
+      display: flex; align-items: center; gap: clamp(1.5rem, 4vw, 4rem);
+      flex-wrap: wrap; justify-content: center;
+    }
+    .countdown-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .countdown-units {
+      display: flex; gap: clamp(1rem, 3vw, 2.5rem);
+    }
+    .countdown-unit {
+      text-align: center;
+    }
+    .countdown-num {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+    .countdown-word {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .countdown-sep {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--gold);
+      opacity: 0.4;
+      align-self: flex-start;
+      padding-top: 0.2rem;
+    }
+
+    /* ===== SECTION STRUCTURE ===== */
+    section { padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6rem); }
+
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--green-deep);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--green-light);
+    }
+    .section-lead {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 60ch;
+      margin-bottom: 3rem;
+    }
+
+    hr.gold-rule {
+      border: none;
+      height: 1px;
+      background: var(--rule);
+      margin: 0 clamp(1.5rem, 6vw, 6rem);
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    #om { background: var(--cream); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+    }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .about-pillars {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .pillar {
+      padding: 1.5rem;
+      border-top: 2px solid var(--green-light);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    .pillar-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .pillar h4 {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 0.3rem;
+    }
+    .pillar p { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.5; }
+
+    .about-stats {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .stat-row {
+      display: flex; align-items: baseline;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      gap: 1.5rem;
+    }
+    .stat-row:first-child { padding-top: 0; }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 900;
+      color: var(--green-deep);
+      line-height: 1;
+      min-width: 120px;
+    }
+    .stat-num span { font-size: 0.5em; color: var(--gold); }
+    .stat-text {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+    .stat-text strong {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 600;
+      color: var(--green-deep);
+      font-size: 1rem;
+    }
+
+    /* ===== PROGRAM ===== */
+    #program { background: var(--green-deep); }
+    #program .section-title { color: var(--white); }
+    #program .section-lead { color: rgba(255,255,255,0.6); }
+    #program .section-eyebrow { color: var(--gold); }
+
+    .program-date-badge {
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: rgba(201,160,96,0.12);
+      border: 1px solid rgba(201,160,96,0.3);
+      padding: 0.6rem 1.4rem;
+      margin-bottom: 3rem;
+    }
+    .program-date-badge span:first-child {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .program-date-badge div {
+      display: flex; flex-direction: column;
+    }
+    .program-date-badge div span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .timeline {
+      display: grid; grid-template-columns: 140px 1fr;
+      gap: 0; max-width: 800px;
+    }
+    @media (max-width: 600px) {
+      .timeline { grid-template-columns: 80px 1fr; }
+    }
+    .tl-time {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--gold);
+      padding: 1.6rem 1.5rem 1.6rem 0;
+      border-right: 1px solid rgba(201,160,96,0.25);
+      text-align: right;
+      line-height: 1;
+      position: relative;
+    }
+    .tl-time::after {
+      content: '';
+      position: absolute; right: -5px; top: 50%;
+      transform: translateY(-50%);
+      width: 9px; height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .tl-content {
+      padding: 1.4rem 0 1.4rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .tl-content h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .tl-content p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+    .tl-highlight .tl-time { color: var(--gold-light); }
+    .tl-highlight .tl-content { background: rgba(201,160,96,0.06); margin-left: -0.5rem; padding-left: 2.5rem; }
+    .tl-highlight .tl-content h3 { color: var(--gold-light); }
+
+    /* ===== FORMAT ===== */
+    #format { background: var(--cream); }
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      background: rgba(0,0,0,0.08);
+      max-width: 1200px;
+    }
+    .format-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: box-shadow 0.3s;
+      position: relative;
+    }
+    .format-card:hover { box-shadow: var(--shadow-md); z-index: 1; }
+    .format-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .format-card:hover::before { height: 100%; }
+    .format-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .format-card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 0.6rem;
+    }
+    .format-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.6; }
+
+    /* ===== VENUE ===== */
+    #venue { background: var(--gold-pale); }
+    .venue-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      max-width: 1200px;
+    }
+    @media (max-width: 900px) { .venue-grid { grid-template-columns: 1fr; } }
+
+    .venue-img-frame {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--green-pale);
+      overflow: hidden;
+    }
+    .venue-img-frame::before {
+      content: 'BANE FOTO';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--green-light);
+      background: var(--green-pale);
+    }
+    .venue-placeholder-note {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(201,160,96,0.15);
+      border-top: 1px solid var(--gold);
+      padding: 0.8rem 1.2rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    /* Gold frame offset */
+    .venue-img-frame::after {
+      content: '';
+      position: absolute; top: 1rem; left: 1rem; right: -1rem; bottom: -1rem;
+      border: 1px solid rgba(201,160,96,0.4);
+      pointer-events: none; z-index: -1;
+    }
+
+    .venue-details { display: flex; flex-direction: column; gap: 0; }
+    .venue-detail {
+      display: flex; gap: 1.2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: flex-start;
+    }
+    .venue-detail:last-child { border-bottom: none; }
+    .venue-detail-icon { font-size: 1.1rem; margin-top: 0.15rem; flex-shrink: 0; }
+    .venue-detail-text strong {
+      display: block;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--green-deep);
+    }
+    .venue-detail-text span { font-size: 0.88rem; color: var(--ink-muted); }
+
+    .venue-placeholder {
+      background: rgba(201,160,96,0.12);
+      border: 1px dashed var(--gold);
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .venue-placeholder strong { display: block; margin-bottom: 0.3rem; color: var(--ink-soft); }
+
+    /* ===== REGISTRERING ===== */
+    #tilmelding {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+      text-align: center;
+    }
+    #tilmelding .section-title { color: var(--white); }
+    #tilmelding .section-lead { color: rgba(255,255,255,0.65); margin: 0 auto 3rem; }
+
+    .reg-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px; max-width: 900px; margin: 0 auto 3rem;
+      background: rgba(255,255,255,0.06);
+    }
+    .reg-card {
+      background: rgba(255,255,255,0.04);
+      padding: 2.5rem 2rem;
+      text-align: left;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .reg-card:hover {
+      border-top-color: var(--gold);
+      background: rgba(255,255,255,0.08);
+    }
+    .reg-card-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .reg-card-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .reg-card-price {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .reg-card-price-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1.5rem;
+    }
+    .reg-card ul {
+      list-style: none; display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .reg-card ul li {
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .reg-card ul li::before { content: '✓'; color: var(--gold); font-size: 0.8rem; }
+
+    /* ===== SPONSORS ===== */
+    #sponsorer { background: var(--cream); }
+    .sponsor-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px; background: rgba(0,0,0,0.06); max-width: 1100px;
+    }
+    .sponsor-cell {
+      background: var(--white);
+      padding: 2rem;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100px;
+      font-family: var(--body);
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .sponsor-cell:hover { background: var(--gold-pale); }
+    .sponsor-cta-box {
+      margin-top: 3rem;
+      max-width: 1100px;
+      padding: 2.5rem;
+      background: var(--white);
+      border-left: 4px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .sponsor-cta-box h3 {
+      font-family: var(--serif); font-size: 1.3rem;
+      color: var(--green-deep);
+    }
+    .sponsor-cta-box p { font-size: 0.9rem; color: var(--ink-soft); margin-top: 0.3rem; }
+
+    /* ===== CONTACT ===== */
+    #kontakt { background: var(--white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 5rem; max-width: 1100px;
+    }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    .contact-info-item {
+      display: flex; gap: 1.2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .contact-info-item h4 {
+      font-family: var(--serif); font-weight: 700;
+      color: var(--green-deep); margin-bottom: 0.2rem;
+    }
+    .contact-info-item p { font-size: 0.9rem; color: var(--ink-muted); }
+    .contact-info-item a { color: var(--green-light); text-decoration: none; }
+    .contact-info-item a:hover { text-decoration: underline; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: var(--cream);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: var(--radius);
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-light);
+      box-shadow: 0 0 0 3px rgba(45,110,71,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      align-self: flex-start;
+    }
+
+    /* ===== FAQ ===== */
+    #faq { background: var(--green-pale); }
+    .faq-grid { max-width: 800px; display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid rgba(45,110,71,0.15);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; text-align: left;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 0;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--green-deep);
+      background: none; border: none; cursor: pointer;
+      gap: 1rem;
+    }
+    .faq-q .faq-arrow {
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a p {
+      font-size: 0.95rem; color: var(--ink-soft);
+      padding-bottom: 1.4rem;
+      line-height: 1.7;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--green-deep);
+      padding: 4rem clamp(1.5rem, 6vw, 6rem) 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem; padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(201,160,96,0.2);
+    }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+
+    .footer-brand p {
+      font-size: 0.88rem; color: rgba(255,255,255,0.45);
+      margin-top: 0.8rem; line-height: 1.7;
+    }
+    .footer-brand .footer-logo-text {
+      font-family: var(--serif);
+      font-size: 1rem; font-weight: 700;
+      color: var(--white);
+    }
+    .footer-col h4 {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-col ul li a {
+      font-size: 0.88rem; color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom {
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+    }
+    .rotary-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ===== PLACEHOLDER NOTICE ===== */
+    .placeholder-banner {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      background: var(--green-deep);
+      border: 1px solid var(--gold);
+      padding: 1rem 1.4rem;
+      max-width: 280px;
+      box-shadow: var(--shadow-lg);
+    }
+    .placeholder-banner h4 {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .placeholder-banner p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+    .placeholder-banner button {
+      margin-top: 0.8rem;
+      background: none; border: 1px solid rgba(201,160,96,0.4);
+      color: var(--gold); font-size: 0.75rem;
+      padding: 0.3rem 0.8rem; cursor: pointer;
+      font-family: var(--mono);
+    }
+    .placeholder-banner button:hover { background: rgba(201,160,96,0.1); }
+
+    /* ===== SCORECARD ===== */
+    .scorecard-table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 900px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+    .scorecard-table th, .scorecard-table td {
+      text-align: center;
+      padding: 0.55rem 0.5rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    .scorecard-table thead th {
+      background: var(--green-deep);
+      color: var(--white);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+    }
+    .sc-hul {
+      text-align: left !important;
+      padding-left: 1rem !important;
+      font-weight: 600;
+      min-width: 60px;
+    }
+    .sc-sum {
+      background: rgba(201,160,96,0.08);
+      font-weight: 700 !important;
+      color: var(--green-deep) !important;
+      border-left: 2px solid var(--rule) !important;
+    }
+    .sc-par td { background: var(--green-deep); color: var(--white); font-weight: 700; }
+    .sc-par .sc-sum { background: #0f2d1f; color: var(--gold) !important; }
+    .sc-hcp td { background: rgba(45,110,71,0.08); color: var(--ink-muted); font-size: 0.7rem; }
+    .sc-tee td { color: var(--ink-soft); }
+    .sc-tee:hover td { background: rgba(201,160,96,0.06); }
+    .sc-tee-61 td { font-weight: 600; }
+    .scorecard-table thead .sc-sum { background: rgba(201,160,96,0.25); color: var(--gold) !important; }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="main-nav">
+    <a href="#top" class="nav-logo">
+      <!-- Rotary Wheel SVG -->
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="16" stroke="#c9a060" stroke-width="1.5" fill="none"/>
+        <circle cx="18" cy="18" r="7" stroke="#c9a060" stroke-width="1.5" fill="none"/>
+        <g stroke="#c9a060" stroke-width="1.2">
+          <line x1="18" y1="2" x2="18" y2="11"/>
+          <line x1="18" y1="25" x2="18" y2="34"/>
+          <line x1="2" y1="18" x2="11" y2="18"/>
+          <line x1="25" y1="18" x2="34" y2="18"/>
+          <line x1="5.5" y1="5.5" x2="12.3" y2="12.3"/>
+          <line x1="23.7" y1="23.7" x2="30.5" y2="30.5"/>
+          <line x1="30.5" y1="5.5" x2="23.7" y2="12.3"/>
+          <line x1="12.3" y1="23.7" x2="5.5" y2="30.5"/>
+        </g>
+      </svg>
+      <span class="nav-logo-text">DM i Rotary Golf<br>2026</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#om">Om DM</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#venue">Banen</a></li>
+      <li><a href="#sponsorer">Sponsorer</a></li>
+      <li><a href="#tilmelding" class="nav-cta">Tilmeld</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-rules"></div>
+
+    <!-- Rotary wheel watermark -->
+    <svg class="hero-watermark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="95" stroke="white" stroke-width="3"/>
+      <circle cx="100" cy="100" r="40" stroke="white" stroke-width="3"/>
+      <g stroke="white" stroke-width="2.5">
+        <line x1="100" y1="5" x2="100" y2="60"/>
+        <line x1="100" y1="140" x2="100" y2="195"/>
+        <line x1="5" y1="100" x2="60" y2="100"/>
+        <line x1="140" y1="100" x2="195" y2="100"/>
+        <line x1="32" y1="32" x2="72" y2="72"/>
+        <line x1="128" y1="128" x2="168" y2="168"/>
+        <line x1="168" y1="32" x2="128" y2="72"/>
+        <line x1="72" y1="128" x2="32" y2="168"/>
+        <line x1="63" y1="18" x2="76" y2="55"/>
+        <line x1="124" y1="145" x2="137" y2="182"/>
+        <line x1="137" y1="18" x2="124" y2="55"/>
+        <line x1="76" y1="145" x2="63" y2="182"/>
+        <line x1="18" y1="137" x2="55" y2="124"/>
+        <line x1="145" y1="76" x2="182" y2="63"/>
+        <line x1="18" y1="63" x2="55" y2="76"/>
+        <line x1="145" y1="124" x2="182" y2="137"/>
+      </g>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Danmarks Mesterskab i Rotary Golf</div>
+      <h1 class="hero-title">DM i<br><em>Rotary</em><br>Golf</h1>
+      <p class="hero-subtitle">Det 5. officielle mesterskab — 28. august 2026</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Dato</span>
+          <span class="hero-meta-value">Fredag, 28. august 2026</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Arrangør</span>
+          <span class="hero-meta-value">Charlottenlund Rotary Klub</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Venue</span>
+          <span class="hero-meta-value">Københavns Golf Klub · Dyrehaven</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Start</span>
+          <span class="hero-meta-value">Gunstart kl. 09:30</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#tilmelding" class="btn-primary">Tilmeld klub / hold →</a>
+        <a href="#program" class="btn-outline">Se program</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN STRIP -->
+  <div class="countdown-strip">
+    <div class="countdown-inner">
+      <span class="countdown-label">Tid til DM 2026</span>
+      <div class="countdown-units">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">—</span>
+          <span class="countdown-word">Dage</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">—</span>
+          <span class="countdown-word">Timer</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-mins">—</span>
+          <span class="countdown-word">Min</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-secs">—</span>
+          <span class="countdown-word">Sek</span>
+        </div>
+      </div>
+      <span class="countdown-label">28. august · Gunstart 09:30</span>
+    </div>
+  </div>
+
+  <!-- OM DM -->
+  <section id="om">
+    <div class="section-eyebrow reveal">Om mesterskabet</div>
+    <div class="about-grid">
+      <div class="reveal reveal-delay-1">
+        <h2 class="section-title">Danmarks <em>bedste</em> Rotary-golfspillere mødes.</h2>
+        <p class="section-lead">DM i Rotary Golf samler de dygtigste golfspillere fra Rotarys ca. 240 klubber i Danmark om ét fælles mål: at kåre årets Brutto og Netto Danmarksmestre.</p>
+        <p style="color: var(--ink-soft); font-size:0.95rem; line-height:1.8; margin-bottom:2rem;">Turneringen er siden starten vokset til en af de mest eftertragtede begivenheder i Rotary Danmarks sportslige kalender. I 2026 er det Charlottenlund Rotary Klubs tur som arrangør — og vi er klar til at sætte nye standarder for hvad et dansk Rotary-golfmesterskab kan være.</p>
+
+        <!-- Defending champions box -->
+        <div style="background: var(--green-deep); padding: 1.8rem 2rem; margin-bottom:2rem; border-left: 4px solid var(--gold);">
+          <div style="font-family:var(--mono); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Forsvarende Danmarksmestre — 2025</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; flex-wrap:wrap;">
+            <div>
+              <div style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:0.3rem;">Brutto · Slagspil</div>
+              <div style="font-family:var(--serif); font-size:1.15rem; font-weight:700; color:var(--white);">Lasse Jensen</div>
+              <div style="font-size:0.82rem; color:rgba(255,255,255,0.5);">Charlottenlund Rotary Klub</div>
+            </div>
+            <div>
+              <div style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:0.3rem;">Netto · Stableford</div>
+              <div style="font-family:var(--serif); font-size:1.15rem; font-weight:700; color:var(--white);">[Navn indsættes]</div>
+              <div style="font-size:0.82rem; color:rgba(255,255,255,0.5);">[Klub indsættes] Rotary Klub</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🏆</div>
+            <h4>To titler — ét mesterskab</h4>
+            <p>Kåres Brutto Danmarksmester (slagspil) og Netto Danmarksmester (stableford) — to separate vindere.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤝</div>
+            <h4>Fællesskab</h4>
+            <p>Mere end et spil — en dag der styrker båndene i Rotarys netværk på tværs af klubber.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🌿</div>
+            <h4>Tradition</h4>
+            <p>Siden 2022 har DM i Rotary Golf samlet Danmark til en dag på banen.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">⭐</div>
+            <h4>Fair play</h4>
+            <p>Spilles med fuldt handicap i netto — alle niveauer er velkomne og kan konkurrere.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-stats reveal reveal-delay-2">
+        <div class="stat-row">
+          <div class="stat-num">5<span>.</span></div>
+          <div class="stat-text">
+            <strong>Udgave af mesterskabet</strong>
+            DM i Rotary Golf afholdes for 5. gang i 2026 — og for første gang arrangeret af Charlottenlund Rotary Klub.
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">240<span>+</span></div>
+          <div class="stat-text">
+            <strong>Rotary klubber i Danmark</strong>
+            Alle Rotarianere med gyldigt DGU-kort er velkomne til at tilmelde sig — uanset hvilken dansk klub de kommer fra.
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">2</div>
+          <div class="stat-text">
+            <strong>Titler at vinde — Brutto & Netto</strong>
+            Årets Brutto Danmarksmester (slagspil) og Netto Danmarksmester (stableford med fuldt handicap) kåres begge på dagen.
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">28<span>/8</span></div>
+          <div class="stat-text">
+            <strong>Fredag 28. august 2026</strong>
+            Sæt kryds i kalenderen allerede nu.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule">
+
+  <!-- PROGRAM -->
+  <section id="program">
+    <div class="section-eyebrow reveal">Fredag 28. august 2026</div>
+    <h2 class="section-title reveal" style="color:var(--white)">Dagens <em style="color:var(--gold-light)">program.</em></h2>
+    <p class="section-lead reveal">En fuldt planlagt mesterskabsdag fra morgenmad til præmieoverrækkelse.</p>
+
+    <div class="program-date-badge reveal">
+      <span>28</span>
+      <div>
+        <span>August</span>
+        <span>2026 — Fredag</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-time">07:30</div>
+      <div class="tl-content">
+        <h3>Registrering & morgenmad</h3>
+        <p>Check-in i klubhuset. Morgenmad serveres. Modtag scorekort og dagens program.</p>
+      </div>
+
+      <div class="tl-time">08:30</div>
+      <div class="tl-content">
+        <h3>Velkomst & briefing</h3>
+        <p>Præsentation af dagens format, regler, tee-fordeling og dagens turneringsledelse.</p>
+      </div>
+
+      <div class="tl-time">09:00</div>
+      <div class="tl-content">
+        <h3>Opvarmning</h3>
+        <p>Tid til at varme op på driving range og putting green inden gunstart.</p>
+      </div>
+
+      <div class="tl-time">09:30</div>
+      <div class="tl-content tl-highlight">
+        <h3>⛳ Gunstart — alle 18 huller</h3>
+        <p>Alle spillere starter simultant fra hvert sit hul. Pistolstart markerer åbningen af DM 2026.</p>
+      </div>
+
+      <div class="tl-time">11:30</div>
+      <div class="tl-content">
+        <h3>Forplejning på banen</h3>
+        <p>Kolde drikke og forplejning ved hul 9.</p>
+      </div>
+
+      <div class="tl-time">14:00</div>
+      <div class="tl-content">
+        <h3>Turneringen slutter · Scoreindlevering</h3>
+        <p>Alle spillere samles i klubhuset. Scoreindlevering og optælling påbegyndes.</p>
+      </div>
+
+      <div class="tl-time">14:30</div>
+      <div class="tl-content">
+        <h3>Frokost & networking</h3>
+        <p>Varm frokost serveres i klubhuset mens resultaterne gøres klar.</p>
+      </div>
+
+      <div class="tl-time">15:30</div>
+      <div class="tl-content tl-highlight">
+        <h3>🏆 Præmieoverrækkelse — DM 2026</h3>
+        <p>Kåring af årets Brutto Danmarksmester (slagspil) og Netto Danmarksmester (stableford). Officiel overrækkelse ved Rotary Danmarks repræsentant.</p>
+      </div>
+
+      <div class="tl-time">16:30</div>
+      <div class="tl-content">
+        <h3>Tak for i dag</h3>
+        <p>Afsluttende ord fra arrangørerne. Ses til DM 2027.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule" style="background: rgba(201,160,96,0.15);">
+
+  <!-- FORMAT -->
+  <section id="format">
+    <div class="section-eyebrow reveal">Turneringsformat</div>
+    <h2 class="section-title reveal">Spilformat & <em>regler.</em></h2>
+    <p class="section-lead reveal">DM i Rotary Golf spilles efter standardiserede regler der sikrer fair konkurrence for alle niveauer.</p>
+
+    <div class="format-grid reveal">
+      <div class="format-card">
+        <span class="format-icon">🏆</span>
+        <h3>Brutto — Slagspil</h3>
+        <p>Den bedste bruttoscore (antal slag) over 18 huller kåres som Brutto Danmarksmester 2026. Individuel konkurrence — ingen handicap-korrektion.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-icon">🎯</span>
+        <h3>Netto — Stableford</h3>
+        <p>Den bedste nettoscore i stableford med fuldt handicap kåres som Netto Danmarksmester 2026. Individuel konkurrence — alle niveauer kan vinde.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-icon">🏌️</span>
+        <h3>Gunstart kl. 09:30</h3>
+        <p>Alle spillere starter simultant fra hvert sit hul. Pistolstart giver energi fra første slag og sikrer at alle er færdige på samme tid.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-icon">📋</span>
+        <h3>Tee-fordeling</h3>
+        <p>Herrerækken spilles fra gul tee (57) · 5.693 meter. Damerækken spilles fra blå tee (52) · 5.180 meter. Fuldt DGU-handicap kræves.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-icon">📱</span>
+        <h3>Scoring · GolfBox</h3>
+        <p>Digital scoring via GolfBox. Download appen inden turneringen. Papirscorecard udleveres også ved registrering som backup.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-icon">⏱️</span>
+        <h3>Spilletempo</h3>
+        <p>Max 4 timer og 30 minutter for 18 huller. Marshals på banen sikrer et godt flow og en god oplevelse for alle.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section id="venue">
+    <div class="section-eyebrow reveal">Turneringsbanen</div>
+    <h2 class="section-title reveal">Mesterskabets <em>venue.</em></h2>
+
+    <div class="venue-grid">
+      <div class="reveal">
+        <!-- Course illustration as SVG since we have no photo -->
+        <div class="venue-img-frame" style="background: var(--green-deep); display:flex; align-items:center; justify-content:center; padding: 2rem;">
+          <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:460px; opacity:0.9;">
+            <!-- Sky -->
+            <rect width="480" height="360" fill="#0f2d1f"/>
+            <!-- Rolling fairway hills -->
+            <path d="M0 280 Q60 240 120 260 Q180 280 240 250 Q300 220 360 245 Q420 265 480 248 L480 360 L0 360Z" fill="#1a4a2e" opacity="0.8"/>
+            <path d="M0 300 Q80 270 160 285 Q240 300 320 275 Q400 255 480 270 L480 360 L0 360Z" fill="#2d6e47" opacity="0.6"/>
+            <path d="M0 330 Q100 310 200 320 Q300 330 400 315 L480 320 L480 360 L0 360Z" fill="#3a8058" opacity="0.5"/>
+            <!-- Ereitage "castle" silhouette top right -->
+            <g opacity="0.35" fill="#c9a060">
+              <rect x="360" y="80" width="6" height="60"/>
+              <rect x="375" y="90" width="6" height="50"/>
+              <rect x="390" y="75" width="8" height="65"/>
+              <rect x="405" y="88" width="6" height="52"/>
+              <rect x="418" y="82" width="6" height="58"/>
+              <rect x="356" y="110" width="72" height="30"/>
+              <rect x="362" y="76" width="4" height="8"/>
+              <rect x="388" y="70" width="4" height="9"/>
+              <rect x="416" y="78" width="4" height="8"/>
+            </g>
+            <!-- Trees left -->
+            <g opacity="0.5">
+              <ellipse cx="40" cy="195" rx="28" ry="35" fill="#1a4a2e"/>
+              <rect x="37" y="225" width="6" height="20" fill="#0f2d1f"/>
+              <ellipse cx="80" cy="210" rx="22" ry="28" fill="#1a4a2e"/>
+              <rect x="77" y="232" width="5" height="16" fill="#0f2d1f"/>
+              <ellipse cx="115" cy="200" rx="25" ry="32" fill="#2d6e47"/>
+              <rect x="112" y="226" width="5" height="18" fill="#0f2d1f"/>
+            </g>
+            <!-- Chestnut allee (18th hole) -->
+            <g opacity="0.4" fill="#c9a060">
+              <ellipse cx="200" cy="165" rx="12" ry="16" fill="#1a4a2e"/>
+              <ellipse cx="215" cy="160" rx="12" ry="16" fill="#1a4a2e"/>
+              <ellipse cx="230" cy="158" rx="12" ry="16" fill="#1a4a2e"/>
+              <ellipse cx="245" cy="160" rx="12" ry="16" fill="#1a4a2e"/>
+              <ellipse cx="260" cy="163" rx="12" ry="16" fill="#1a4a2e"/>
+            </g>
+            <!-- Flag on green -->
+            <line x1="300" y1="240" x2="300" y2="195" stroke="#c9a060" stroke-width="1.5"/>
+            <path d="M300 195 L318 202 L300 208Z" fill="#c9a060"/>
+            <!-- Deer silhouettes on slette -->
+            <g opacity="0.6" fill="rgba(201,160,96,0.5)">
+              <ellipse cx="155" cy="268" rx="14" ry="8" fill="rgba(201,160,96,0.4)"/>
+              <ellipse cx="155" cy="263" rx="5" ry="6" fill="rgba(201,160,96,0.4)"/>
+              <line x1="155" y1="257" x2="153" y2="250" stroke="rgba(201,160,96,0.4)" stroke-width="1.5"/>
+              <line x1="153" y1="250" x2="150" y2="246" stroke="rgba(201,160,96,0.4)" stroke-width="1"/>
+              <line x1="153" y1="250" x2="156" y2="246" stroke="rgba(201,160,96,0.4)" stroke-width="1"/>
+              <ellipse cx="175" cy="272" rx="12" ry="7" fill="rgba(201,160,96,0.3)"/>
+              <ellipse cx="175" cy="267" rx="4" ry="5" fill="rgba(201,160,96,0.3)"/>
+            </g>
+            <!-- Bunkers -->
+            <ellipse cx="330" cy="260" rx="18" ry="9" fill="rgba(255,240,200,0.12)" stroke="rgba(255,240,200,0.2)" stroke-width="1"/>
+            <ellipse cx="270" cy="255" rx="12" ry="6" fill="rgba(255,240,200,0.1)" stroke="rgba(255,240,200,0.15)" stroke-width="1"/>
+            <!-- Text overlay -->
+            <text x="40" y="50" font-family="'Playfair Display', Georgia, serif" font-size="18" fill="rgba(201,160,96,0.8)" font-style="italic">Københavns Golf Klub</text>
+            <text x="40" y="70" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">DYREHAVEN · EST. 1928 · PAR 71</text>
+          </svg>
+        </div>
+        <p style="font-family: var(--mono); font-size:0.62rem; letter-spacing:0.12em; color:var(--ink-muted); margin-top:0.7rem; text-align:center; text-transform:uppercase;">📸 Foto indsættes — kgkgolf.dk</p>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <h3 style="font-family: var(--serif); font-size: 1.8rem; color: var(--green-deep); margin-bottom: 0.4rem;">Københavns Golf Klub</h3>
+        <p style="font-family: var(--mono); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">Danmarks ældste golfklub · Skandinaviens første</p>
+
+        <p style="font-size:0.95rem; color:var(--ink-soft); line-height:1.85; margin-bottom:2rem;">
+          Midt i Dyrehavens fredfyldte natur — med Eremitageslottet som permanent kulisse — ligger en bane, der er formet af tid, landskab og tradition. Fairways følger Eremitageslettens naturlige topografi og de gamle agerfurer, der stadig præger terrænet. Det giver hullerne en organisk, urolig karakter, som ingen bunker-arkitekt kan efterligne. Vinden er banens usynlige fjerde element — og på den åbne slette er den sjældent til at ignorere.
+          <br><br>
+          Banen kræver strategi, ikke magt. Greens er hurtige og faste, og placering af drivet er næsten altid vigtigere end afstand. Kronhjorte og dådyr strejfer gerne rundt i udkanterne af teestederne og minder spillerne om, at de er gæster i et naturreservat — ikke omvendt.
+          <br><br>
+          Anlægget stammer fra 1928, tegnet af en anonym skotsk arkitekt i golfdesignets klassiske periode. Banen er siden blevet genfortolket af Tom Mackenzie — en af nutidens mest respekterede golfbanearkitekter. Afslutningshullet er en par 3 bag en diagonal allé af gamle kastanjetræer: smukt, umuligt at ignorere og umuligt at glemme.
+        </p>
+
+        <div class="venue-details">
+          <div class="venue-detail">
+            <span class="venue-detail-icon">📍</span>
+            <div class="venue-detail-text">
+              <strong>Adresse</strong>
+              <span>Dyrehaven 2, DK-2800 Kgs. Lyngby<br><span style="font-size:0.8rem; opacity:0.7;">GPS: Springforbivej, 2930 Klampenborg</span></span>
+            </div>
+          </div>
+          <div class="venue-detail">
+            <span class="venue-detail-icon">🕳️</span>
+            <div class="venue-detail-text">
+              <strong>Bane · Scorekort</strong>
+              <span>18 huller · Par 71 (36+35) · 6.075 meter (længste tee)</span>
+            </div>
+          </div>
+          <div class="venue-detail">
+            <span class="venue-detail-icon">🏠</span>
+            <div class="venue-detail-text">
+              <strong>Faciliteter</strong>
+              <span>Fuldt klubhus · Restaurant & terrasse · Driving range · Gratis parkering</span>
+            </div>
+          </div>
+          <div class="venue-detail">
+            <span class="venue-detail-icon">📱</span>
+            <div class="venue-detail-text">
+              <strong>Scoring</strong>
+              <span>Digital scoring via GolfBox · Download appen inden turneringen</span>
+            </div>
+          </div>
+          <div class="venue-detail">
+            <span class="venue-detail-icon">🌐</span>
+            <div class="venue-detail-text">
+              <strong>Læs mere om banen</strong>
+              <span><a href="https://www.kgkgolf.dk/banen/#baneguide" target="_blank" style="color:var(--green-light); text-decoration:none;">kgkgolf.dk/banen</a> — Baneguide & lokale regler</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scorecard -->
+    <div style="margin-top: 5rem;" class="reveal">
+      <div class="section-eyebrow" style="margin-bottom:1.5rem;">Scorekort — Københavns Golf Klub · 18 huller</div>
+      <div style="overflow-x:auto; max-width:1200px;">
+        <table class="scorecard-table">
+          <thead>
+            <tr>
+              <th class="sc-hul">Hul</th>
+              <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+              <th>6</th><th>7</th><th>8</th><th>9</th>
+              <th class="sc-sum">Ud</th>
+              <th>10</th><th>11</th><th>12</th><th>13</th><th>14</th>
+              <th>15</th><th>16</th><th>17</th><th>18</th>
+              <th class="sc-sum">Ind</th>
+              <th class="sc-sum">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sc-par">
+              <td class="sc-hul">Par</td>
+              <td>3</td><td>4</td><td>4</td><td>5</td><td>4</td>
+              <td>4</td><td>4</td><td>4</td><td>4</td>
+              <td class="sc-sum">36</td>
+              <td>4</td><td>5</td><td>3</td><td>4</td><td>4</td>
+              <td>4</td><td>3</td><td>5</td><td>3</td>
+              <td class="sc-sum">35</td>
+              <td class="sc-sum">71</td>
+            </tr>
+            <tr class="sc-hcp">
+              <td class="sc-hul">HCP</td>
+              <td>15</td><td>13</td><td>11</td><td>1</td><td>3</td>
+              <td>7</td><td>5</td><td>9</td><td>17</td>
+              <td class="sc-sum">—</td>
+              <td>10</td><td>2</td><td>16</td><td>8</td><td>12</td>
+              <td>6</td><td>18</td><td>4</td><td>14</td>
+              <td class="sc-sum">—</td>
+              <td class="sc-sum">—</td>
+            </tr>
+            <tr class="sc-tee sc-tee-61">
+              <td class="sc-hul">⬛ 61</td>
+              <td>177</td><td>268</td><td>330</td><td>509</td><td>401</td>
+              <td>424</td><td>363</td><td>379</td><td>270</td>
+              <td class="sc-sum">3121</td>
+              <td>391</td><td>468</td><td>140</td><td>345</td><td>392</td>
+              <td>347</td><td>149</td><td>532</td><td>190</td>
+              <td class="sc-sum">2954</td>
+              <td class="sc-sum">6075</td>
+            </tr>
+            <tr class="sc-tee sc-tee-57">
+              <td class="sc-hul">🟡 57</td>
+              <td>167</td><td>268</td><td>330</td><td>454</td><td>377</td>
+              <td>400</td><td>363</td><td>369</td><td>256</td>
+              <td class="sc-sum">2984</td>
+              <td>305</td><td>457</td><td>140</td><td>341</td><td>330</td>
+              <td>323</td><td>135</td><td>503</td><td>175</td>
+              <td class="sc-sum">2709</td>
+              <td class="sc-sum">5693</td>
+            </tr>
+            <tr class="sc-tee sc-tee-52">
+              <td class="sc-hul">🔵 52</td>
+              <td>140</td><td>268</td><td>289</td><td>454</td><td>337</td>
+              <td>345</td><td>310</td><td>307</td><td>256</td>
+              <td class="sc-sum">2706</td>
+              <td>305</td><td>428</td><td>140</td><td>263</td><td>330</td>
+              <td>283</td><td>135</td><td>436</td><td>154</td>
+              <td class="sc-sum">2474</td>
+              <td class="sc-sum">5180</td>
+            </tr>
+            <tr class="sc-tee sc-tee-49">
+              <td class="sc-hul">⚪ 49</td>
+              <td>130</td><td>241</td><td>289</td><td>383</td><td>337</td>
+              <td>345</td><td>310</td><td>307</td><td>230</td>
+              <td class="sc-sum">2572</td>
+              <td>267</td><td>409</td><td>131</td><td>263</td><td>285</td>
+              <td>283</td><td>121</td><td>436</td><td>154</td>
+              <td class="sc-sum">2349</td>
+              <td class="sc-sum">4921</td>
+            </tr>
+            <tr class="sc-tee sc-tee-45">
+              <td class="sc-hul">🔴 45</td>
+              <td>130</td><td>241</td><td>289</td><td>383</td><td>303</td>
+              <td>279</td><td>310</td><td>250</td><td>230</td>
+              <td class="sc-sum">2415</td>
+              <td>198</td><td>325</td><td>131</td><td>263</td><td>285</td>
+              <td>219</td><td>121</td><td>436</td><td>154</td>
+              <td class="sc-sum">2132</td>
+              <td class="sc-sum">4547</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.1em; color:var(--ink-muted); margin-top:0.8rem;">
+        Herrerækken spilles fra 🟡 gul tee (57) · 5.693 meter &nbsp;|&nbsp; Damerækken spilles fra 🔵 blå tee (52) · 5.180 meter &nbsp;|&nbsp; Par 71 · Fuldt DGU-handicap kræves
+      </p>
+    </div>
+  </section>
+
+  <!-- TILMELDING -->
+  <section id="tilmelding">
+    <div class="section-eyebrow reveal" style="justify-content:center">Tilmelding</div>
+    <h2 class="section-title reveal" style="color:var(--white); text-align:center; max-width:none">Meld din klub <em style="color:var(--gold-light)">til.</em></h2>
+    <p class="section-lead reveal" style="text-align:center;">Alle Rotarianere med gyldigt DGU-kort er velkomne. Tilmeld hold eller som enkeltspiller.</p>
+
+    <div class="reg-cards reveal">
+      <div class="reg-card">
+        <div class="reg-card-label">Holdtilmelding · Samme klub</div>
+        <div class="reg-card-title">Hold (4 spillere)</div>
+        <div class="reg-card-price">4.000<span style="font-size:1rem; font-weight:400; color: rgba(255,255,255,0.5)"> kr.</span></div>
+        <div class="reg-card-price-note">DKK 1.000,- pr. spiller · 4 spillere fra samme klub</div>
+        <ul>
+          <li>18 huller — individuel slagspil & stableford</li>
+          <li>Greenfee inkluderet</li>
+          <li>Morgenmad & frokost</li>
+          <li>Goodie bag til alle spillere</li>
+          <li>Præmieoverrækkelse</li>
+        </ul>
+      </div>
+      <div class="reg-card">
+        <div class="reg-card-label">Enkeltvis tilmelding</div>
+        <div class="reg-card-title">Enkeltspiller</div>
+        <div class="reg-card-price">1.100<span style="font-size:1rem; font-weight:400; color: rgba(255,255,255,0.5)"> kr.</span></div>
+        <div class="reg-card-price-note">DKK 1.100,- pr. spiller · placeres i gruppe</div>
+        <ul>
+          <li>Samme inklusioner som holdpladsen</li>
+          <li>Placeres i gruppe med andre spillere</li>
+          <li>Konkurrerer i begge rækker (brutto & netto)</li>
+          <li>DGU-kort med aktivt handicap kræves</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align:center">
+      <a href="#kontakt" class="btn-primary" style="margin: 0 auto">Kontakt os for tilmelding →</a>
+      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4); font-family: var(--mono); letter-spacing:0.08em">ONLINE TILMELDING ÅBNER SNART · DGU-KORT KRÆVES</p>
+    </div>
+  </section>
+
+  <!-- SPONSORER -->
+  <section id="sponsorer">
+    <div class="section-eyebrow reveal">Vores sponsorer</div>
+    <h2 class="section-title reveal">Tak til dem der gør det <em>muligt.</em></h2>
+    <p class="section-lead reveal">DM i Rotary Golf 2026 er muliggjort af en række dedikerede sponsorer. Sponsorer annonceres løbende frem mod turneringen.</p>
+
+    <div class="sponsor-grid reveal">
+      <div class="sponsor-cell">Sponsor 1</div>
+      <div class="sponsor-cell">Sponsor 2</div>
+      <div class="sponsor-cell">Sponsor 3</div>
+      <div class="sponsor-cell">Sponsor 4</div>
+      <div class="sponsor-cell">Sponsor 5</div>
+      <div class="sponsor-cell">Sponsor 6</div>
+      <div class="sponsor-cell" style="font-style:normal; color:var(--ink-muted); font-size:0.8rem;">+ flere annonceres</div>
+    </div>
+
+    <div class="sponsor-cta-box reveal">
+      <div>
+        <h3>Vil din virksomhed være DM-sponsor?</h3>
+        <p>Sponsorer opnår eksponering over for Rotarys netværk af ledere og specialister i Danmark.</p>
+      </div>
+      <a href="#kontakt" class="btn-primary">Hør om mulighederne →</a>
+    </div>
+  </section>
+
+  <hr class="gold-rule">
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-eyebrow reveal">Spørgsmål & svar</div>
+    <h2 class="section-title reveal">Det vil du <em>vide.</em></h2>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Hvem kan deltage i DM i Rotary Golf?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a"><p>Alle aktive Rotarianere med gyldigt DGU-kort og aktivt handicap kan deltage. Man tilmelder sig enten som hold (4 spillere fra samme klub, DKK 4.000,-) eller som enkeltspiller (DKK 1.100,-), hvorefter man placeres i en gruppe med andre spillere.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Hvad er matchformen?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a"><p>Turneringen afgøres i to individuelle rækker: Brutto Danmarksmester kåres ved den bedste bruttoscore (slagspil over 18 huller) — og Netto Danmarksmester kåres ved den bedste nettoscore i stableford med fuldt handicap. Alle spillere konkurrerer i begge rækker.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Hvad er inkluderet i deltagergebyret?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a"><p>Greenfee for 18 huller, morgenmad ved registrering, frokost efter turneringen samt goodie bag til alle spillere. Præmieoverrækkelse med DM-pokalerne for brutto og netto er selvfølgelig inkluderet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Fra hvilken tee spilles der?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a"><p>Herrerækken spilles fra gul tee (57) — 5.693 meter, Par 71. Damerækken spilles fra blå tee (52) — 5.180 meter, Par 71. Gyldigt DGU-kort med aktivt handicap skal medbringes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Hvad sker der ved dårligt vejr?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a"><p>DM 2026 gennemføres i al slags vejr — vi er danskere. Kun ved tordenvejr eller ekstreme vejrforhold kan turneringsledelsen beslutte at afkorte eller udsætte. Information kommunikeres via SMS og opdateres på hjemmesiden.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Kan vores virksomhed blive sponsor?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a"><p>Ja — DM i Rotary Golf tilbyder sponsormuligheder der eksponerer din virksomhed over for Rotarys netværk fra hele landet. Kontakt os via formularen nedenfor for at høre om de konkrete muligheder og priser.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="section-eyebrow reveal">Kontakt</div>
+    <h2 class="section-title reveal">Skriv til <em>os.</em></h2>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="section-lead" style="margin-bottom:2rem;">Spørgsmål om tilmelding, sponsorater eller andet? Vi vender tilbage hurtigst muligt.</p>
+        <div class="contact-info-item">
+          <div class="contact-icon">🏌️</div>
+          <div>
+            <h4>Turneringsansvarlig</h4>
+            <p>[Navn — indsættes]<br><a href="mailto:dm@charlottenlund-rotary.dk">dm@charlottenlund-rotary.dk</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Arrangørklub</h4>
+            <p>Charlottenlund Rotary Klub<br>Charlottenlund, Danmark</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📅</div>
+          <div>
+            <h4>Turneringsdato</h4>
+            <p>Fredag 28. august 2026<br>Gunstart kl. 09:30</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <h4>Rotary Danmark</h4>
+            <p><a href="https://www.rotary.dk" target="_blank">rotary.dk</a> — Officiel hjemmeside</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Navn</label>
+              <input type="text" placeholder="Dit navn" required>
+            </div>
+            <div class="form-group">
+              <label>Klub</label>
+              <input type="text" placeholder="Din Rotaryklub">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="din@email.dk" required>
+            </div>
+            <div class="form-group">
+              <label>Telefon</label>
+              <input type="tel" placeholder="+45 xx xx xx xx">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Hvad handler det om?</label>
+            <select>
+              <option value="">Vælg emne</option>
+              <option>Tilmelding — hold (4 spillere)</option>
+              <option>Tilmelding — enkeltspiller</option>
+              <option>Sponsormuligheder</option>
+              <option>Praktisk information</option>
+              <option>Presse / medier</option>
+              <option>Andet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Besked</label>
+            <textarea placeholder="Skriv din besked her..."></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-primary">Send besked →</button>
+          </div>
+          <div id="form-thanks" style="display:none; background: var(--green-pale); padding:1rem; border-left: 3px solid var(--green-light); font-family: var(--body); color: var(--green-deep);">
+            ✓ Tak for din henvendelse! Vi vender tilbage hurtigst muligt.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">DM i Rotary Golf 2026</div>
+        <p>Danmarks Mesterskab i Rotary Golf — arrangeret af Charlottenlund Rotary Klub. Fredag 28. august 2026.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Event</h4>
+        <ul>
+          <li><a href="#om">Om mesterskabet</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#format">Spilformat</a></li>
+          <li><a href="#venue">Turneringsbanen</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Deltag</h4>
+        <ul>
+          <li><a href="#tilmelding">Tilmelding</a></li>
+          <li><a href="#sponsorer">Bliv sponsor</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rotary</h4>
+        <ul>
+          <li><a href="https://www.rotary.dk" target="_blank">Rotary Danmark</a></li>
+          <li><a href="#" target="_blank">Charlottenlund Rotary Klub</a></li>
+          <li><a href="https://www.rotary.org" target="_blank">Rotary International</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Charlottenlund Rotary Klub · DM i Rotary Golf 2026. Alle rettigheder forbeholdes.</p>
+      <div class="rotary-badge">
+        <svg width="18" height="18" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="15" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="6" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <g stroke="rgba(255,255,255,0.3)" stroke-width="1">
+            <line x1="18" y1="3" x2="18" y2="12"/>
+            <line x1="18" y1="24" x2="18" y2="33"/>
+            <line x1="3" y1="18" x2="12" y2="18"/>
+            <line x1="24" y1="18" x2="33" y2="18"/>
+            <line x1="7" y1="7" x2="13" y2="13"/>
+            <line x1="23" y1="23" x2="29" y2="29"/>
+            <line x1="29" y1="7" x2="23" y2="13"/>
+            <line x1="13" y1="23" x2="7" y2="29"/>
+          </g>
+        </svg>
+        Service Above Self
+      </div>
+    </div>
+  </footer>
+
+  <!-- PLACEHOLDER BANNER -->
+  <div class="placeholder-banner" id="placeholder-banner">
+    <h4>Demo-version</h4>
+    <p>Siden mangler info fra Thomas: golfklub, kontaktperson, priser, sponsorer og logo.</p>
+    <button onclick="document.getElementById('placeholder-banner').style.display='none'">Forstået ✕</button>
+  </div>
+
+  <script>
+    // Scroll-triggered nav
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(r => observer.observe(r));
+
+    // Countdown
+    function updateCountdown() {
+      const target = new Date('2026-08-28T09:30:00');
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '0';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent = '00';
+        document.getElementById('cd-secs').textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = d;
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // FAQ
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '68px';
+      links.style.left = '0'; links.style.right = '0';
+      links.style.background = 'var(--cream)';
+      links.style.padding = '1.5rem 2rem';
+      links.style.boxShadow = 'var(--shadow-md)';
+    }
+
+    // Form
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-thanks').style.display = 'block';
+      e.target.style.opacity = '0.4';
+      e.target.style.pointerEvents = 'none';
+    }
+  </script>
+</body>
+</html>
